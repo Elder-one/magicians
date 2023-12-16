@@ -5,7 +5,11 @@ class Entity(ABC):
 
     counter = 0
 
-    def __init__(self, max_hp: int, max_energy: int, name: str):
+    def __init__(self, max_hp: int, max_energy: int,
+                 damage: int, healing: int, name: str):
+        self.healing = healing
+        self.damage = damage
+        self.name = name
         self.alive = True
         self.max_hp = max_hp
         self.max_energy = max_energy
@@ -28,10 +32,22 @@ class Entity(ABC):
             self.wounded_action()
             return
 
+    def get_healing(self, amount):
+        if not self.alive:
+            return
+        if self.hp + amount >= self.max_hp:
+            self.hp = self.max_hp
+        else:
+            self.hp += amount
+        self.healed_action()
+
     def set_target(self, target):
         if target.alive:
             self.target = target
         return
+
+    def wrong_target(self):
+        print(f"{self.name}: wrong target")
 
     @abstractmethod
     def attack(self):
@@ -47,6 +63,22 @@ class Entity(ABC):
 
     @abstractmethod
     def wounded_action(self):
+        return
+
+    @abstractmethod
+    def healed_action(self):
+        return
+
+    @abstractmethod
+    def attack_skill(self):
+        return
+
+    @abstractmethod
+    def healing_skill(self):
+        return
+
+    @abstractmethod
+    def skill_action(self):
         return
 
     def __eq__(self, other):
