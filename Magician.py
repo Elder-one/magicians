@@ -11,66 +11,66 @@ class Magician(Entity):
                  energy_cost: int, name: str):
         super().__init__(max_hp, max_energy,
                          damage, healing, name)
-        self.energy_cost = energy_cost
+        self.__energy_cost = energy_cost
 
     def attack(self):
-        if self.energy < self.energy_cost:
-            self.out_of_energy()
+        if self.__energy < self.__energy_cost:
+            self.__out_of_energy()
             return
-        if self.target is None:
-            self.wrong_target()
+        if self.__target is None:
+            self.__wrong_target()
             return
-        if not isinstance(self.target, Enemy):
-            self.wrong_target()
+        if not isinstance(self.__target, Enemy):
+            self.__wrong_target()
             return
-        if not self.target.alive:
-            self.wrong_target()
+        if not self.__target.get_status:
+            self.__wrong_target()
             return
-        self.attack_skill()
-        self.skill_action()
-        self.energy -= self.energy_cost
+        self.__attack_skill()
+        self.__skill_action()
+        self.__energy -= self.__energy_cost
 
     def heal(self):
-        if self.energy < self.energy_cost:
-            self.out_of_energy()
+        if self.__energy < self.__energy_cost:
+            self.__out_of_energy()
             return
-        if self.target is None:
-            self.wrong_target()
+        if self.__target is None:
+            self.__wrong_target()
             return
-        if not isinstance(self.target, Magician):
-            self.wrong_target()
+        if not isinstance(self.__target, Magician):
+            self.__wrong_target()
             return
-        if not self.target.alive:
-            self.wrong_target()
+        if not self.__target.get_status:
+            self.__wrong_target()
             return
-        self.healing_skill()
-        self.skill_action()
-        self.energy -= self.energy_cost
+        self.__healing_skill()
+        self.__skill_action()
+        self.__energy -= self.__energy_cost
 
     @abstractmethod
-    def out_of_energy(self):
+    def __out_of_energy(self):
         return
 
     @abstractmethod
-    def death_action(self):
+    def __death_action(self):
         return
 
     @abstractmethod
-    def wounded_action(self):
+    def __wounded_action(self):
         return
 
     @abstractmethod
-    def healed_action(self):
+    def __healed_action(self):
         return
 
     @abstractmethod
-    def attack_skill(self):
+    def __attack_skill(self):
         return
 
     @abstractmethod
-    def healing_skill(self):
+    def __healing_skill(self):
         return
 
     @abstractmethod
-    def skill_action(self):
+    def __skill_action(self):
         return

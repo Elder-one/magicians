@@ -14,27 +14,27 @@ class Wizard(Magician):
                          data["energy_cost"],
                          name)
 
-    def out_of_energy(self):
-        print(f"{self.name}: My energy flow is interrupted!")
+    def __out_of_energy(self):
+        print(f"{self.__name}: My energy flow is interrupted!")
 
-    def death_action(self):
-        print(f"{self.name}: A worthy opponent ..")
+    def __death_action(self):
+        print(f"{self.__name}: A worthy opponent ..")
 
-    def wounded_action(self):
-        print(f"{self.name}: Barely a scratch!")
+    def __wounded_action(self):
+        print(f"{self.__name}: Barely a scratch!")
 
-    def healed_action(self):
-        print(f"{self.name}: Alright, it's my turn")
+    def __healed_action(self):
+        print(f"{self.__name}: Alright, it's my turn")
 
-    def attack_skill(self):
-        amount = self.damage
-        if isinstance(self.target, Cultist):
+    def __attack_skill(self):
+        amount = self.__damage
+        if isinstance(self.__target, Cultist):
             amount /= 2
-        self.target.get_damage(amount)
+        self.__target.get_damage(amount)
 
-    def healing_skill(self):
-        self.target.get_healing(self.healing)
+    def __healing_skill(self):
+        self.__target.get_healing(self.__healing)
 
-    def skill_action(self):
-        print(f"{self.name}: *casts a spell*")
+    def __skill_action(self):
+        print(f"{self.__name}: *casts a spell*")
 

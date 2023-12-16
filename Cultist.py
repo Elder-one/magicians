@@ -13,24 +13,24 @@ class Cultist(Enemy):
                          data["healing"],
                          "Cultist")
 
-    def death_action(self):
-        print(f"Cultist({self.id}): You! You will.. regret this..")
+    def __death_action(self):
+        print(f"Cultist({self.__id}): You! You will.. regret this..")
 
-    def wounded_action(self):
-        print(f"Cultist({self.id}): You shall pay a bucket of your blood"
+    def __wounded_action(self):
+        print(f"Cultist({self.__id}): You shall pay a bucket of your blood"
               f"\nfor each drop of mine!")
 
-    def healed_action(self):
-        print(f"Cultist({self.id})Invincible! That the word you was looking for")
+    def __healed_action(self):
+        print(f"Cultist({self.__id})Invincible! That the word you was looking for")
 
-    def attack_skill(self):
-        self.target.get_damage(self.damage)
+    def __attack_skill(self):
+        self.__target.get_damage(self.__damage)
 
-    def healing_skill(self):
-        amount = self.healing
-        if isinstance(self.target, Shoggoth):
+    def __healing_skill(self):
+        amount = self.__healing
+        if isinstance(self.__target, Shoggoth):
             amount *= 3
-        self.target.get_healing(amount)
+        self.__target.get_healing(amount)
 
-    def skill_action(self):
-        print(f"Cultist({self.id}): Hear the eternal call!")
+    def __skill_action(self):
+        print(f"Cultist({self.__id}): Hear the eternal call!")

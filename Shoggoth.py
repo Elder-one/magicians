@@ -12,23 +12,23 @@ class Shoggoth(Enemy):
                          data["healing"],
                          "Shoggoth")
 
-    def death_action(self):
-        print(f"Shoggoth({self.id}): *decays*")
+    def __death_action(self):
+        print(f"Shoggoth({self.__id}): *decays*")
 
-    def wounded_action(self):
-        print(f"Shoggoth({self.id}): *screams with disgusting noises*")
+    def __wounded_action(self):
+        print(f"Shoggoth({self.__id}): *screams with disgusting noises*")
 
-    def healed_action(self):
-        print(f"Shoggoth({self.id}): *regenerates*")
+    def __healed_action(self):
+        print(f"Shoggoth({self.__id}): *regenerates*")
 
-    def attack_skill(self):
-        self.target.get_damage(self.damage)
+    def __attack_skill(self):
+        self.__target.get_damage(self.__damage)
 
-    def healing_skill(self):
-        if self.target != self:
+    def __healing_skill(self):
+        if self.__target != self:
             return
         else:
-            self.target.get_healing(self.healing)
+            self.__target.get_healing(self.__healing)
 
-    def skill_action(self):
-        print(f"Shoggoth({self.id}): Te-ke-li-ly!")
+    def __skill_action(self):
+        print(f"Shoggoth({self.__id}): Te-ke-li-ly!")

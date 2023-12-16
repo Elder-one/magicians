@@ -12,51 +12,51 @@ class Enemy(Entity):
                          damage, healing, name)
 
     def attack(self):
-        if self.target is None:
-            self.wrong_target()
+        if self.__target is None:
+            self.__wrong_target()
             return
-        if not isinstance(self.target, Magician):
-            self.wrong_target()
+        if not isinstance(self.__target, Magician):
+            self.__wrong_target()
             return
-        if not self.target.alive:
-            self.wrong_target()
+        if not self.__target.get_status:
+            self.__wrong_target()
             return
-        self.attack_skill()
-        self.skill_action()
+        self.__attack_skill()
+        self.__skill_action()
 
     def heal(self):
-        if self.target is None:
-            self.wrong_target()
+        if self.__target is None:
+            self.__wrong_target()
             return
-        if not isinstance(self.target, Enemy):
-            self.wrong_target()
+        if not isinstance(self.__target, Enemy):
+            self.__wrong_target()
             return
-        if not self.target.alive:
-            self.wrong_target()
+        if not self.__target.get_status:
+            self.__wrong_target()
             return
-        self.healing_skill()
-        self.skill_action()
+        self.__healing_skill()
+        self.__skill_action()
 
     @abstractmethod
-    def death_action(self):
+    def __death_action(self):
         return
 
     @abstractmethod
-    def wounded_action(self):
+    def __wounded_action(self):
         return
 
     @abstractmethod
-    def healed_action(self):
+    def __healed_action(self):
         return
 
     @abstractmethod
-    def attack_skill(self):
+    def __attack_skill(self):
         return
 
     @abstractmethod
-    def healing_skill(self):
+    def __healing_skill(self):
         return
 
     @abstractmethod
-    def skill_action(self):
+    def __skill_action(self):
         return

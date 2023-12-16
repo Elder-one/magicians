@@ -14,26 +14,26 @@ class Priest(Magician):
                          data["energy_cost"],
                          name)
 
-    def out_of_energy(self):
-        print(f"{self.name}: I no longer posses a Gods blessing")
+    def __out_of_energy(self):
+        print(f"{self.__name}: I no longer posses a Gods blessing")
 
-    def death_action(self):
-        print(f"{self.name}: Nodence.. has not.. protected me..")
+    def __death_action(self):
+        print(f"{self.__name}: Nodence.. has not.. protected me..")
 
-    def wounded_action(self):
-        print(f"{self.name}: How dare you!")
+    def __wounded_action(self):
+        print(f"{self.__name}: How dare you!")
 
-    def healed_action(self):
-        print(f"{self.name}: Now that's more like it!")
+    def __healed_action(self):
+        print(f"{self.__name}: Now that's more like it!")
 
-    def attack_skill(self):
-        amount = self.damage
-        if isinstance(self.target, Shoggoth):
+    def __attack_skill(self):
+        amount = self.__damage
+        if isinstance(self.__target, Shoggoth):
             amount *= 5
-        self.target.get_damage(amount)
+        self.__target.get_damage(amount)
 
-    def healing_skill(self):
-        self.target.get_healing(self.healing)
+    def __healing_skill(self):
+        self.__target.get_healing(self.__healing)
 
-    def skill_action(self):
-        print(f"{self.name}: *prays to the Outer Gods*")
+    def __skill_action(self):
+        print(f"{self.__name}: *prays to the Outer Gods*")

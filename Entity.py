@@ -3,51 +3,87 @@ from abc import ABC, abstractmethod
 
 class Entity(ABC):
 
-    counter = 0
+    __counter = 0
 
     def __init__(self, max_hp: int, max_energy: int,
                  damage: int, healing: int, name: str):
-        self.healing = healing
-        self.damage = damage
-        self.name = name
-        self.alive = True
-        self.max_hp = max_hp
-        self.max_energy = max_energy
-        self.hp = max_hp
-        self.energy = max_energy
-        self.id = Entity.counter
-        self.target = None
-        Entity.counter += 1
+        self.__healing = healing
+        self.__damage = damage
+        self.__name = name
+        self.__alive = True
+        self.__max_hp = max_hp
+        self.__max_energy = max_energy
+        self.__hp = max_hp
+        self.__energy = max_energy
+        self.__id = Entity.__counter
+        self.__target = None
+        Entity.__counter += 1
 
     def get_damage(self, amount):
-        if not self.alive:
+        if not self.__alive:
             return
-        if self.hp <= amount:
-            self.alive = False
-            self.hp = 0
-            self.death_action()
+        if self.__hp <= amount:
+            self.__alive = False
+            self.__hp = 0
+            self.__death_action()
             return
         else:
-            self.hp -= amount
-            self.wounded_action()
+            self.__hp -= amount
+            self.__wounded_action()
             return
 
     def get_healing(self, amount):
-        if not self.alive:
+        if not self.__alive:
             return
-        if self.hp + amount >= self.max_hp:
-            self.hp = self.max_hp
+        if self.__hp + amount >= self.__max_hp:
+            self.__hp = self.__max_hp
         else:
-            self.hp += amount
-        self.healed_action()
+            self.__hp += amount
+        self.__healed_action()
 
     def set_target(self, target):
         if target.alive:
-            self.target = target
+            self.__target = target
         return
 
-    def wrong_target(self):
-        print(f"{self.name}: wrong target")
+    def __wrong_target(self):
+        print(f"{self.__name}: wrong target")
+
+    @property
+    def get_target(self):
+        return self.__target
+
+    @property
+    def get_status(self):
+        return self.__alive
+
+    @property
+    def get_id(self):
+        return self.__id
+
+    @property
+    def get_name(self):
+        return self.__name
+
+    @property
+    def get_hp(self):
+        return self.__hp
+
+    @property
+    def get_max_hp(self):
+        return self.__max_hp
+
+    @property
+    def get_energy(self):
+        return self.__energy
+
+    @property
+    def get_max_energy(self):
+        return self.__max_energy
+
+    @property
+    def get_class(self):
+        return self.__class__.__name__
 
     @abstractmethod
     def attack(self):
@@ -58,28 +94,28 @@ class Entity(ABC):
         return
 
     @abstractmethod
-    def death_action(self):
+    def __death_action(self):
         return
 
     @abstractmethod
-    def wounded_action(self):
+    def __wounded_action(self):
         return
 
     @abstractmethod
-    def healed_action(self):
+    def __healed_action(self):
         return
 
     @abstractmethod
-    def attack_skill(self):
+    def __attack_skill(self):
         return
 
     @abstractmethod
-    def healing_skill(self):
+    def __healing_skill(self):
         return
 
     @abstractmethod
-    def skill_action(self):
+    def __skill_action(self):
         return
 
     def __eq__(self, other):
-        return self.id == other.id
+        return self.__id == other.get_id
